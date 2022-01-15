@@ -1,5 +1,5 @@
 {
     "extends": "./tsconfig.json",
-    "include": ["src/**/*.ts", ".eslintrc.js"],
-    "exclude": ["node_modules", "dist", "src/**/*spec.ts"]
+    "include": ["src/**/*.ts", ".eslintrc.js", "karma.conf.js"],
+    "exclude": ["node_modules", "dist"]
 }
