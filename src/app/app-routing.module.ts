@@ -8,16 +8,16 @@ import { SigninComponent } from './features/pages/signin/signin.component';
 import { SignupComponent } from './features/pages/signup/signup.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: SigninComponent },
-  { path: 'cadastro', component: SignupComponent },
-  { path: 'dash', component: DashComponent },
-  { path: 'configuracoes', component: SettingsComponent },
-  { path: '**', component: PageNotFoundComponent }
+    { path: '', component: HomeComponent },
+    { path: 'login', component: SigninComponent },
+    { path: 'cadastro', component: SignupComponent },
+    { path: 'dash', component: DashComponent },
+    { path: 'configuracoes', component: SettingsComponent },
+    { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule],
 })
 export class AppRoutingModule { }
