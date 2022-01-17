@@ -1,1 +1,24 @@
-<p>signin works!</p>
+<div class="sign-in" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1>Bem vindo!</h1>
+    <h2>Fazer Login</h2>
+    <form (submit)="signIn()">
+        <div class="form-group">
+            <label for="user">Usuário</label>
+            <input type="text" class="form-control" id="user" name="user" [(ngModel)]="user" required>
+            <div class="invalid-feedback">
+                Por favor, informe seu e-mail.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Senha</label>
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
+            <div class="invalid-feedback">
+                Por favor, informe sua senha.
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            <a routerLink="/">Voltar</a>
+        </div>
+    </form>
+</div>
