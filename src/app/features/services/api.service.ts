@@ -1,141 +1,49 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DataObject } from '@core/interfaces/data.interface';
 import { ApiConfig } from 'src/app/core/configs/api.config';
+import { BaseService } from './base.service';
 
 @Injectable({
     providedIn: 'root',
 })
-export class ApiService {
+export class ApiService extends BaseService {
     public baseUrl: string;
 
-    constructor(private config: ApiConfig) {
+    constructor(private config: ApiConfig, http: HttpClient) {
+        super(http);
         this.baseUrl = this.config.baseUrl;
     }
 
-    public async signIn(user: string, password: string) {
-        const response = await fetch(
-            `${this.baseUrl}/signin`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    user,
-                    password,
-                }),
-            },
-        );
-        const data = await response.json();
-        if (data === 'invalid username or passord') {
-            return { error: 'invalid username or passord' };
-        }
-        return data;
+    public signIn(user: string, password: string) {
+        return this.post<{ user: any; token: string; }>(`${this.baseUrl}/login`, { user, password });
     }
 
-    public async signUp(userSignUp: { user: string; email: string; password: string; name: string; }) {
-        const response = await fetch(
-            `${this.baseUrl}/signup`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(userSignUp),
-            },
-        );
-        const data = await response.json();
-        return data;
+    public signUp(userSignUp: { user: string; email: string; password: string; name: string; }) {
+        return this.post(`${this.baseUrl}/cadastrar`, userSignUp);
     }
 
-    public async getUser(user: string, token: string) {
-        const response = await fetch(
-            `${this.baseUrl}/user`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    user,
-                    token,
-                }),
-            },
-        );
-        const data = await response.json();
-        return data;
+    public updateUser(user: { name: string; email: string; user: string; password: string }) {
+        return this.post(`${this.baseUrl}/atualizar`, user);
     }
 
-    public async getUserItems(user: string, token: string) {
-        const response = await fetch(
-            `${this.baseUrl}/user/items`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    user,
-                    token,
-                }),
+    public getItems(token: string) {
+        return this.post(`${this.baseUrl}/get-data`, null, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                authorization: `Bearer ${token}`,
             },
-        );
-        const data = await response.json();
-        return data;
+        });
     }
 
-    public async updateUser(user: string, token: string, userUpdate: { name: string; email: string; }) {
-        const response = await fetch(
-            `${this.baseUrl}/user/update`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    user,
-                    token,
-                    userUpdate,
-                }),
+    public updateItems(token: string, items: DataObject) {
+        return this.post(`${this.baseUrl}/update-data`, items, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                authorization: `Bearer ${token}`,
             },
-        );
-        const data = await response.json();
-        return data;
-    }
-
-    public async updateUserItems(token: string, items: any) {
-        const response = await fetch(
-            `${this.baseUrl}/user/items/update`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    token,
-                    items,
-                }),
-            },
-        );
-        const data = await response.json();
-        return data;
-    }
-
-    public async deleteUser(user: string, token: string, password: string) {
-        const response = await fetch(
-            `${this.baseUrl}/user/delete`,
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    user,
-                    token,
-                    password,
-                }),
-            },
-        );
-        const data = await response.json();
-        return data;
+        });
     }
 }
