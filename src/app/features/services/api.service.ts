@@ -32,7 +32,7 @@ export class ApiService extends BaseService {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
     }
@@ -42,7 +42,7 @@ export class ApiService extends BaseService {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token}`,
             },
         });
     }
