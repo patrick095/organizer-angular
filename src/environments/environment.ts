@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    baseUrl: 'https://organizer-service.herokuapp.com',
+    baseUrl: 'https://organizer-service.herokuapp.com'
 };
 
 /*

@@ -1,31 +1,73 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import { Component, OnInit } from '@angular/core';
+import {
+    Component, ElementRef, OnInit, ViewChild
+} from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '@features/services/api.service';
+import { faArrowCircleRight, faSpinner, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
-    styleUrls: ['./signin.component.scss'],
+    styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-    public user!: string;
+    @ViewChild('passwordInput') passwordInput: ElementRef;
+    public user: string;
+    public password: string;
+    public isLoading: boolean;
+    public isUserValid: boolean;
+    public isUserInvalid: boolean;
 
-    public password!: string;
+    public arrowRight: IconDefinition;
+    public spinner: IconDefinition;
 
-    constructor(private apiService: ApiService) { }
-
-    ngOnInit(): void {
+    constructor(private apiService: ApiService, private router: Router) {
+        this.user = '';
+        this.password = '';
+        this.isLoading = false;
+        this.isUserValid = false;
+        this.isUserInvalid = false;
+        this.arrowRight = faArrowCircleRight;
+        this.spinner = faSpinner;
     }
 
-    public signIn(): void {
-        this.apiService.signIn(this.user, this.password).subscribe(
+    ngOnInit(): void {}
+
+    public signIn(event): void {
+        event.preventDefault();
+        if (this.user.length > 0 && this.password.length > 0) {
+            this.isLoading = true;
+            this.apiService.signIn(this.user, this.password).subscribe(
+                (res) => {
+                    document.cookie = `token=${res['token']};`;
+                    this.router.navigate(['/dash']);
+                },
+                () => {},
+                () => {
+                    this.isLoading = false;
+                }
+            );
+        }
+    }
+
+    public validateUser(): void {
+        this.isLoading = true;
+        this.apiService.validadeUser(this.user).subscribe(
             (res) => {
-                console.log(res);
-                document.cookie = `token=${res['token']};`;
+                this.isUserValid = res['valid'];
+                this.isUserInvalid = false;
+                setTimeout(() => {
+                    this.passwordInput.nativeElement.focus();
+                }, 100);
             },
-            (err) => {
-                console.log(err);
+            () => {
+                this.isLoading = false;
+                this.isUserInvalid = true;
             },
+            () => {
+                this.isLoading = false;
+            }
         );
     }
 }

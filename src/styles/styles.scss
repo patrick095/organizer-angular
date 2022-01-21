@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --bg-color: #ffffff;
+    --font-color: #0e0e0e;
+    --primary-item-color: #4266b9;
+    --primary-item-font-color: #ffffff;
+}
+
+* {
+    color: var(--font-color);
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-item-color);
+}
+
+body {
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@import 'base/index';
+@import 'animations/index';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');

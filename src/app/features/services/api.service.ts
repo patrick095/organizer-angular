@@ -5,7 +5,7 @@ import { ApiConfig } from 'src/app/core/configs/api.config';
 import { BaseService } from './base.service';
 
 @Injectable({
-    providedIn: 'root',
+    providedIn: 'root'
 })
 export class ApiService extends BaseService {
     public baseUrl: string;
@@ -16,10 +16,10 @@ export class ApiService extends BaseService {
     }
 
     public signIn(user: string, password: string) {
-        return this.post<{ user: any; token: string; }>(`${this.baseUrl}/login`, { user, password });
+        return this.post<{ user: any; token: string }>(`${this.baseUrl}/login`, { user, password });
     }
 
-    public signUp(userSignUp: { user: string; email: string; password: string; name: string; }) {
+    public signUp(userSignUp: { user: string; email: string; password: string; name: string }) {
         return this.post(`${this.baseUrl}/cadastrar`, userSignUp);
     }
 
@@ -27,13 +27,17 @@ export class ApiService extends BaseService {
         return this.post(`${this.baseUrl}/atualizar`, user);
     }
 
+    public validadeUser(user: string) {
+        return this.get(`${this.baseUrl}/validar?user=${user}`);
+    }
+
     public getItems(token: string) {
         return this.post(`${this.baseUrl}/get-data`, null, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
+                Authorization: `Bearer ${token}`
+            }
         });
     }
 
@@ -42,8 +46,8 @@ export class ApiService extends BaseService {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
+                Authorization: `Bearer ${token}`
+            }
         });
     }
 }

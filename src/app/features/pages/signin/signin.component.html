@@ -1,24 +1,56 @@
-<div class="sign-in" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <h1>Bem vindo!</h1>
-    <h2>Fazer Login</h2>
-    <form (submit)="signIn()">
-        <div class="form-group">
-            <label for="user">Usuário</label>
-            <input type="text" class="form-control" id="user" name="user" [(ngModel)]="user" required>
-            <div class="invalid-feedback">
-                Por favor, informe seu e-mail.
+<div class="sign-in">
+    <div class="sign-in__card">
+        <h2>Entrar</h2>
+        <form (submit)="signIn($event)">
+            <div [ngClass]="['form-group', isUserInvalid ? 'invalid' : '']">
+                <input
+                    type="text"
+                    placeholder="Email ou usuário"
+                    class="form-control"
+                    [(ngModel)]="user"
+                    id="user"
+                    name="user"
+                    [(ngModel)]="user"
+                    required
+                />
+                <button
+                    *ngIf="!isUserValid"
+                    (click)="validateUser()"
+                    [disabled]="user.length === 0"
+                    [ngClass]="isLoading ? 'loading' : ''"
+                >
+                    <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
+                </button>
+                <div *ngIf="isUserInvalid" class="invalid-feedback">Usuário inválido.</div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="password">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
-            <div class="invalid-feedback">
-                Por favor, informe sua senha.
+            <div [ngClass]="['form-group', isUserValid ? '' : 'hidden']">
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Senha"
+                    [(ngModel)]="password"
+                    required
+                    #passwordInput
+                />
+                <button
+                    *ngIf="isUserValid"
+                    type="submit"
+                    [disabled]="user.length === 0"
+                    [ngClass]="isLoading ? 'loading' : ''"
+                >
+                    <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
+                </button>
+                <div class="invalid-feedback">Por favor, informe sua senha.</div>
             </div>
+            <div class="text-left">
+                <a routerLink="/esqueci-a-senha">Esqueceu a senha?</a>
+            </div>
+        </form>
+
+        <div class="button-bar">
+            <a class="button secondary" routerLink="/">Voltar</a>
         </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Entrar</button>
-            <a routerLink="/">Voltar</a>
-        </div>
-    </form>
+    </div>
 </div>

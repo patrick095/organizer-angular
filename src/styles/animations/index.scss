@@ -1,0 +1,15 @@
+.loading {
+    animation: loading 1s infinite linear;
+    border: none !important;
+    cursor: wait !important;
+    pointer-events: none !important;
+}
+
+@keyframes loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

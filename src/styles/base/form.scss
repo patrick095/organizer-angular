@@ -1,0 +1,60 @@
+.form-group {
+    margin-bottom: 21px;
+    display: flex;
+    flex-direction: row;
+    text-align: left;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 3px 10px;
+    position: relative;
+
+    input {
+        padding: 10px;
+        border: none;
+        flex-grow: 2;
+        font-size: 16px;
+    }
+
+    button {
+        border: none;
+        background-color: var(--primary-item-font-color);
+        cursor: pointer;
+        position: absolute;
+        right: 7px;
+        top: 7px;
+
+        &:disabled {
+            opacity: 0.6;
+            pointer-events: none;
+            cursor: text !important;
+        }
+
+        svg {
+            path {
+                fill: #909090;
+            }
+        }
+    }
+    .invalid-feedback {
+        display: none;
+        margin-top: 5px;
+        color: red;
+        position: absolute;
+        bottom: -22px;
+        left: 0px;
+    }
+
+    &.invalid {
+        border: 1px solid red;
+        .invalid-feedback {
+            display: block;
+        }
+    }
+
+    &.valid {
+        border-color: green;
+        button {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.hidden {
+    display: none;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.button {
+    border: none;
+    background-color: var(--primary-item-color);
+    cursor: pointer;
+    color: var(--primary-item-font-color);
+    padding: 7px 21px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 18px;
+
+    &.secondary {
+        background-color: var(--primary-item-font-color);
+        color: var(--primary-item-color);
+        border: 1px solid var(--primary-item-color);
+    }
+}
+
+.button-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    button {
+        margin-left: 10px;
+    }
+}

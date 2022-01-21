@@ -13,6 +13,7 @@ import { SettingsModule } from '@features/pages/settings/settings.module';
 import { PageNotFoundModule } from '@features/pages/page-not-found/page-not-found.module';
 import { DashModule } from '@features/pages/dash/dash.module';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-found.component';
@@ -32,6 +33,7 @@ import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-
         SettingsModule,
         PageNotFoundModule,
         DashModule,
+        FontAwesomeModule,
     ],
     providers: [
         ApiService,
