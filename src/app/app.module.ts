@@ -14,15 +14,13 @@ import { PageNotFoundModule } from '@features/pages/page-not-found/page-not-foun
 import { DashModule } from '@features/pages/dash/dash.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NavbarModule } from '@core/components/navbar/navbar.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-found.component';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        PageNotFoundComponent,
-    ],
+    declarations: [AppComponent, PageNotFoundComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -34,12 +32,9 @@ import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-
         PageNotFoundModule,
         DashModule,
         FontAwesomeModule,
+        NavbarModule,
     ],
-    providers: [
-        ApiService,
-        ApiConfig,
-        AuthGuardService,
-    ],
+    providers: [ApiService, ApiConfig, AuthGuardService],
     bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

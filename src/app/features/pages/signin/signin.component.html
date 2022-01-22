@@ -11,14 +11,12 @@
                     id="user"
                     name="user"
                     [(ngModel)]="user"
-                    required
-                />
+                    required />
                 <button
                     *ngIf="!isUserValid"
                     (click)="validateUser()"
                     [disabled]="user.length === 0"
-                    [ngClass]="isLoading ? 'loading' : ''"
-                >
+                    [ngClass]="isLoading ? 'loading' : ''">
                     <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
                 </button>
                 <div *ngIf="isUserInvalid" class="invalid-feedback">Usuário inválido.</div>
@@ -32,25 +30,19 @@
                     placeholder="Senha"
                     [(ngModel)]="password"
                     required
-                    #passwordInput
-                />
+                    #passwordInput />
                 <button
                     *ngIf="isUserValid"
                     type="submit"
                     [disabled]="user.length === 0"
-                    [ngClass]="isLoading ? 'loading' : ''"
-                >
+                    [ngClass]="isLoading ? 'loading' : ''">
                     <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
                 </button>
                 <div class="invalid-feedback">Por favor, informe sua senha.</div>
             </div>
-            <div class="text-left">
+            <div class="text-left mt-1">
                 <a routerLink="/esqueci-a-senha">Esqueceu a senha?</a>
             </div>
         </form>
-
-        <div class="button-bar">
-            <a class="button secondary" routerLink="/">Voltar</a>
-        </div>
     </div>
 </div>

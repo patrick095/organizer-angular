@@ -1,3 +1,8 @@
-.invalid-feedback {
-    display: none;
+.signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 64px;
+    min-height: calc(100vh - 80px);
 }

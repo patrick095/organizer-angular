@@ -1,44 +1,114 @@
-<div class="sign-up" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+<div class="signup">
     <h1>Cadastro</h1>
-    <form (submit)="signUp()">
-        <div class="form-group">
-            <label for="name">Usuário</label>
-            <input type="text" class="form-control" id="user" name="user" [(ngModel)]="user" required>
-            <div class="invalid-feedback">
-                Por favor, informe seu nome.
-            </div>
+    <form (submit)="signUp($event)">
+        <form
+            (submit)="validateEmail()"
+            class="form-group"
+            [ngClass]="invalidInputs[0] ? 'invalid' : invalidInputs[0] === false ? 'valid' : ''">
+            <input
+                #emailInput
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                placeholder="Email"
+                [(ngModel)]="email"
+                required />
+            <button
+                *ngIf="step === 0"
+                type="submit"
+                [disabled]="email.length === 0"
+                [ngClass]="isLoading ? 'loading' : ''">
+                <fa-icon size="2x" [icon]="isLoading ? iconSpinner : iconArrowRight"></fa-icon>
+            </button>
+            <div class="invalid-feedback">Email ijá cadastrado ou inválido.</div>
+        </form>
+        <form
+            (submit)="validateUser()"
+            class="form-group"
+            [ngClass]="step < 1 ? 'hidden' : invalidInputs[1] ? 'invalid' : invalidInputs[1] === false ? 'valid' : ''">
+            <input
+                #userInput
+                type="text"
+                class="form-control"
+                id="user"
+                name="user"
+                placeholder="Usuário"
+                [(ngModel)]="user"
+                required />
+            <button
+                *ngIf="step === 1"
+                type="submit"
+                [disabled]="user.length === 0"
+                [ngClass]="isLoading ? 'loading' : ''">
+                <fa-icon size="2x" [icon]="isLoading ? iconSpinner : iconArrowRight"></fa-icon>
+            </button>
+            <div class="invalid-feedback">Usuário já cadastrado, tente outro.</div>
+        </form>
+        <div
+            class="form-group"
+            [ngClass]="step < 2 ? 'hidden' : invalidInputs[2] ? 'invalid' : invalidInputs[2] === false ? 'valid' : ''">
+            <input
+                #nameInput
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="Nome completo"
+                [(ngModel)]="name"
+                (input)="validateName()"
+                required />
+            <div class="invalid-feedback">Por favor, informe seu nome completo.</div>
         </div>
-        <div class="form-group">
-            <label for="name">Nome</label>
-            <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" required>
-            <div class="invalid-feedback">
-                Por favor, informe seu nome.
-            </div>
+        <div
+            class="form-group"
+            [ngClass]="step < 3 ? 'hidden' : invalidInputs[3] ? 'invalid' : invalidInputs[3] === false ? 'valid' : ''">
+            <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="password"
+                name="password"
+                placeholder="Senhas"
+                [(ngModel)]="password"
+                (input)="validatePassword()"
+                required
+                #passwordInput />
+            <button
+                type="button"
+                style="display: block"
+                (click)="showPassword = !showPassword"
+                [disabled]="password.length === 0">
+                <fa-icon size="2x" [icon]="showPassword ? iconEyeClose : iconEye"></fa-icon>
+            </button>
+            <div class="invalid-feedback">Sua senha deve ter pelo menos 8 digitos.</div>
         </div>
-        <div class="form-group">
-            <label for="email">E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" required>
-            <div class="invalid-feedback">
-                Por favor, informe seu e-mail.
-            </div>
+        <div
+            class="form-group"
+            [ngClass]="step < 3 ? 'hidden' : invalidInputs[4] ? 'invalid' : invalidInputs[4] === false ? 'valid' : ''">
+            <input
+                [type]="showConfirmPassword ? 'text' : 'password'"
+                class="form-control"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirmar senha"
+                [(ngModel)]="confirmPassword"
+                (input)="validateBothPassword()"
+                #confirmPasswordInput
+                required />
+            <button
+                type="button"
+                style="display: block"
+                (click)="showConfirmPassword = !showConfirmPassword"
+                [disabled]="!confirmPassword || confirmPassword.length === 0">
+                <fa-icon size="2x" [icon]="showConfirmPassword ? iconEyeClose : iconEye"></fa-icon>
+            </button>
+            <div class="invalid-feedback">Senhas não conferem.</div>
         </div>
-        <div class="form-group">
-            <label for="password">Senha</label>
-            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
-            <div class="invalid-feedback">
-                Por favor, informe sua senha.
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="confirmPassword">Confirmar senha</label>
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required>
-            <div class="invalid-feedback">
-                Por favor, confirme sua senha.
-            </div>
-        </div>
-        <div>
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-            <a routerLink="/">Voltar</a>
+        <div *ngIf="step >= 3" class="w-100 mt-2">
+            <button type="submit" style="float: right" class="button">
+                <span *ngIf="!isLoading">Cadastrar</span>
+                <fa-icon size="1x" class="ml-1" [icon]="isLoading ? iconSpinner : iconUserPlus"></fa-icon>
+            </button>
         </div>
     </form>
 </div>

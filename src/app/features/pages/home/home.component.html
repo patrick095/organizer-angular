@@ -1,8 +1,17 @@
 <div class="Home">
-    <h1>Início</h1>
-    <nav style="display: flex; flex-direction: column">
-        <a routerLink="login">Fazer login</a>
-        <a routerLink="cadastro">Cadastrar</a>
-        <a *ngIf="isAuthenticated" routerLink="dash">Dashboard</a>
-    </nav>
+    <h2>junte-se a nós gratuitamente!!</h2>
+    <form (submit)="validateEmail($event)">
+        <div class="d-flex align-items-center">
+            <div class="form-group" [ngClass]="isRegistered ? 'invalid' : ''">
+                <input type="email" [(ngModel)]="email" name="email" id="email" placeholder="digite seu email" />
+                <div *ngIf="isRegistered" class="invalid-feedback">
+                    Email já cadastrado, deseja fazer o <a routerLink="login">login</a>?
+                </div>
+            </div>
+            <button class="button ml-2" type="submit">
+                <span *ngIf="!isLoading">Cadastre-se</span>
+                <fa-icon size="1x" class="ml-1" [icon]="isLoading ? iconSpinner : iconUserPlus"></fa-icon>
+            </button>
+        </div>
+    </form>
 </div>

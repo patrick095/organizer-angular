@@ -4,10 +4,11 @@
     --font-color: #0e0e0e;
     --primary-item-color: #4266b9;
     --primary-item-font-color: #ffffff;
+    --secondary-bg-color: #1b1b1b;
+    --secondary-font-color: #eeeeee;
 }
 
 * {
-    color: var(--font-color);
     outline: 0;
 }
 
@@ -18,8 +19,6 @@ a {
 
 body {
     background-color: var(--bg-color);
-    margin: 0;
-    padding: 0;
     font-family: 'Montserrat', sans-serif;
 }
 

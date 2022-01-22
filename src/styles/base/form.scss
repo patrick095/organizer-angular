@@ -1,5 +1,4 @@
 .form-group {
-    margin-bottom: 21px;
     display: flex;
     flex-direction: row;
     text-align: left;
@@ -8,6 +7,10 @@
     padding: 3px 10px;
     position: relative;
 
+    & + .form-group {
+        margin-top: 21px;
+    }
+
     input {
         padding: 10px;
         border: none;
@@ -15,9 +18,13 @@
         font-size: 16px;
     }
 
+    input[type='email'] {
+        min-width: 300px;
+    }
+
     button {
         border: none;
-        background-color: var(--primary-item-font-color);
+        background-color: transparent;
         cursor: pointer;
         position: absolute;
         right: 7px;

@@ -10,8 +10,8 @@ import { SignupComponent } from './features/pages/signup/signup.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'login', component: SigninComponent },
-    { path: 'cadastro', component: SignupComponent },
+    { path: 'entrar', component: SigninComponent },
+    { path: 'cadastrar', component: SignupComponent },
     { path: 'dash', component: DashComponent, canActivate: [AuthGuardService] },
     { path: 'configuracoes', component: SettingsComponent },
     { path: '**', component: PageNotFoundComponent },
@@ -21,4 +21,4 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,15 @@
+<nav class="navbar">
+    <div class="navbar__left">
+        <a routerLink="/" class="brand-logo"> Organizer </a>
+        <a *ngIf="isAuthenticated" routerLink="dash">Dashboard</a>
+    </div>
+    <div class="navbar__rigth">
+        <ng-container *ngIf="!isAuthenticated">
+            <a routerLink="entrar">Fazer login</a>
+            <a routerLink="cadastrar" class="button">Cadastrar</a>
+        </ng-container>
+        <ng-container *ngIf="isAuthenticated">
+            <button (click)="logout()" class="button secondary">Sair</button>
+        </ng-container>
+    </div>
+</nav>
