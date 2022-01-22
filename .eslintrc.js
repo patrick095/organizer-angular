@@ -26,6 +26,7 @@ module.exports = {
         'lines-between-class-members': 'off',
         '@typescript-eslint/lines-between-class-members': 'off',
         'comma-dangle': 'off',
-        '@typescript-eslint/comma-dangle': 'off'
+        '@typescript-eslint/comma-dangle': 'off',
+        'object-curly-newline': 'off'
     }
 };
