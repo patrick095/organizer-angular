@@ -1,0 +1,11 @@
+<div class="dock-button" [ngStyle]="{ 'background-color': bgColor }" [title]="title">
+    <fa-icon
+        *ngIf="icon"
+        [ngClass]="customClass"
+        [styles]="{ color: iconColor, filter: 'drop-shadow(0 0 3px #00000040)' }"
+        [spin]="startSpin"
+        size="2x"
+        [icon]="Icon"
+        (mouseenter)="startSpin = spin ? true : false"
+        (mouseout)="startSpin = false"></fa-icon>
+</div>
