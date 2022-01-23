@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ApiResponseUser, ResponseValidate } from '@core/interfaces/api.interface';
-import { DataObject } from '@core/interfaces/data.interface';
+import { ApiResponseUser, ResponseData, ResponseValidate } from '@core/interfaces/api.interface';
 import { ApiConfig } from 'src/app/core/configs/api.config';
 import { BaseService } from './base.service';
 
@@ -37,21 +36,21 @@ export class ApiService extends BaseService {
     }
 
     public getItems(token: string) {
-        return this.post(`${this.baseUrl}/get-data`, null, {
+        return this.post<ResponseData>(`${this.baseUrl}/auth/get-data`, null, {
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
+                authorization: `Bearer ${token}`,
             },
             observe: 'body',
         });
     }
 
-    public updateItems(token: string, items: DataObject) {
-        return this.post(`${this.baseUrl}/update-data`, items, {
+    public updateItems(token: string, items: ResponseData) {
+        return this.post<ResponseData>(`${this.baseUrl}/auth/update-data`, items, {
             headers: {
                 'Content-Type': 'application/json',
                 Accept: 'application/json',
-                Authorization: `Bearer ${token}`,
+                authorization: `Bearer ${token}`,
             },
             observe: 'body',
         });

@@ -18,6 +18,7 @@ import { NavbarModule } from '@core/components/navbar/navbar.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-found.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [AppComponent, PageNotFoundComponent],
@@ -33,6 +34,7 @@ import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-
         DashModule,
         FontAwesomeModule,
         NavbarModule,
+        NoopAnimationsModule,
     ],
     providers: [ApiService, ApiConfig, AuthGuardService],
     bootstrap: [AppComponent],

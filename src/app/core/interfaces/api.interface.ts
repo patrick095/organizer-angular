@@ -49,3 +49,21 @@ export interface ResponseValidate {
     valid: boolean;
     error?: string;
 }
+
+export interface ResponseData {
+    userId: string;
+    objects: Array<UserDataObjectInterface>;
+}
+
+export interface UserDataObjectInterface {
+    date: Date;
+    description: string;
+    id: string;
+    title: string;
+    type: string;
+    theme: string;
+    position: {
+        x: number;
+        y: number;
+    };
+}

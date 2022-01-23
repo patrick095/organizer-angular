@@ -1,0 +1,9 @@
+<div
+    class="drag-item"
+    cdkDrag
+    [cdkDragFreeDragPosition]="dragPosition"
+    cdkDragBoundary=".dash"
+    (mouseup)="savePosition()"
+    (cdkDragMoved)="showPosition($event)">
+    id: {{ id }}, title: {{ title }}
+</div>
