@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import {
-    Component, ElementRef, OnInit, ViewChild
-} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { emailRegexp } from '@core/configs/regex.config';
 import { ApiService } from '@features/services/api.service';
 import { faArrowCircleRight, faSpinner, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-signin',
     templateUrl: './signin.component.html',
-    styleUrls: ['./signin.component.scss']
+    styleUrls: ['./signin.component.scss'],
 })
 export class SigninComponent implements OnInit {
     @ViewChild('passwordInput') passwordInput: ElementRef;
@@ -46,13 +45,32 @@ export class SigninComponent implements OnInit {
                 () => {},
                 () => {
                     this.isLoading = false;
-                }
+                },
             );
         }
     }
 
     public validateUser(): void {
         this.isLoading = true;
+        if (emailRegexp.test(this.user)) {
+            this.apiService.validateEmail(this.user).subscribe(
+                (res) => {
+                    this.isUserValid = res['valid'];
+                    this.isUserInvalid = false;
+                    setTimeout(() => {
+                        this.passwordInput.nativeElement.focus();
+                    }, 100);
+                },
+                () => {
+                    this.isLoading = false;
+                    this.isUserInvalid = true;
+                },
+                () => {
+                    this.isLoading = false;
+                },
+            );
+            return;
+        }
         this.apiService.validadeUser(this.user).subscribe(
             (res) => {
                 this.isUserValid = res['valid'];
@@ -67,7 +85,7 @@ export class SigninComponent implements OnInit {
             },
             () => {
                 this.isLoading = false;
-            }
+            },
         );
     }
 }
