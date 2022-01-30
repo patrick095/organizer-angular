@@ -1,111 +1,100 @@
 <div class="signup">
     <h1>Cadastro</h1>
-    <form (submit)="signUp($event)">
+    <form [formGroup]="form" (ngSubmit)="signUp()">
         <form
-            (submit)="validateEmail()"
+            (submit)="validateEmail($event)"
             class="form-group"
-            [ngClass]="invalidInputs[0] ? 'invalid' : invalidInputs[0] === false ? 'valid' : ''">
+            [ngClass]="invalidInputs[0] ? 'ng-invalid mb-2' : invalidInputs[0] === false ? 'ng-valid' : ''">
             <input
+                formControlName="email"
                 #emailInput
                 type="email"
                 class="form-control"
                 id="email"
                 name="email"
                 placeholder="Email"
-                [(ngModel)]="email"
+                (input)="validateStep(0)"
                 required />
-            <button
-                *ngIf="step === 0"
-                type="submit"
-                [disabled]="email.length === 0"
-                [ngClass]="isLoading ? 'loading' : ''">
+            <button *ngIf="step === 0" type="submit" [disabled]="form.get('email').invalid" [ngClass]="isLoading ? 'loading' : ''">
                 <fa-icon size="2x" [icon]="isLoading ? iconSpinner : iconArrowRight"></fa-icon>
             </button>
-            <div class="invalid-feedback">Email ijá cadastrado ou inválido.</div>
+            <div class="invalid-feedback">Email inválido ou já cadastrado.</div>
         </form>
         <form
-            (submit)="validateUser()"
+            (submit)="validateUser($event)"
             class="form-group"
-            [ngClass]="step < 1 ? 'hidden' : invalidInputs[1] ? 'invalid' : invalidInputs[1] === false ? 'valid' : ''">
+            [ngClass]="step < 1 ? 'hidden' : invalidInputs[1] ? 'ng-invalid mb-2' : invalidInputs[1] === false ? 'ng-valid' : ''">
             <input
+                formControlName="user"
                 #userInput
                 type="text"
                 class="form-control"
                 id="user"
                 name="user"
                 placeholder="Usuário"
-                [(ngModel)]="user"
+                (input)="validateStep(1)"
                 required />
-            <button
-                *ngIf="step === 1"
-                type="submit"
-                [disabled]="user.length === 0"
-                [ngClass]="isLoading ? 'loading' : ''">
+            <button *ngIf="step === 1" type="submit" [disabled]="form.get('user').invalid" [ngClass]="isLoading ? 'loading' : ''">
                 <fa-icon size="2x" [icon]="isLoading ? iconSpinner : iconArrowRight"></fa-icon>
             </button>
-            <div class="invalid-feedback">Usuário já cadastrado, tente outro.</div>
+            <div class="invalid-feedback">Usuário inválido ou já cadastrado.</div>
         </form>
-        <div
-            class="form-group"
-            [ngClass]="step < 2 ? 'hidden' : invalidInputs[2] ? 'invalid' : invalidInputs[2] === false ? 'valid' : ''">
+        <div class="form-group" [ngClass]="step < 2 ? 'hidden' : invalidInputs[2] ? 'ng-invalid mb-2' : invalidInputs[2] === false ? 'ng-valid' : ''">
             <input
+                formControlName="name"
                 #nameInput
                 type="text"
                 class="form-control"
                 id="name"
                 name="name"
                 placeholder="Nome completo"
-                [(ngModel)]="name"
-                (input)="validateName()"
-                required />
+                required
+                (input)="form.get('name').valid ? (step = 3) : null; validateStep(2)" />
             <div class="invalid-feedback">Por favor, informe seu nome completo.</div>
         </div>
-        <div
-            class="form-group"
-            [ngClass]="step < 3 ? 'hidden' : invalidInputs[3] ? 'invalid' : invalidInputs[3] === false ? 'valid' : ''">
+        <div class="form-group" [ngClass]="step < 3 ? 'hidden' : invalidInputs[3] ? 'ng-invalid mb-3' : invalidInputs[3] === false ? 'ng-valid' : ''">
             <input
                 [type]="showPassword ? 'text' : 'password'"
                 class="form-control"
                 id="password"
                 name="password"
+                formControlName="password"
                 placeholder="Senhas"
-                [(ngModel)]="password"
-                (input)="validatePassword()"
+                (input)="validateStep(3)"
                 required
                 #passwordInput />
-            <button
-                type="button"
-                style="display: block"
-                (click)="showPassword = !showPassword"
-                [disabled]="password.length === 0">
+            <button type="button" style="display: block" (click)="showPassword = !showPassword">
                 <fa-icon size="2x" [icon]="showPassword ? iconEyeClose : iconEye"></fa-icon>
             </button>
-            <div class="invalid-feedback">Sua senha deve ter pelo menos 8 digitos.</div>
+            <div class="invalid-feedback">
+                Senha fraca.
+                <div class="tooltip">
+                    <fa-icon size="1x" [icon]="iconQuestion"> </fa-icon>
+                    <span class="tooltiptext">
+                        Sua Senha deve conter:
+                        <br />8 dígitos <br />1 letra maiúscula <br />1 letra minúscula <br />1 número
+                    </span>
+                </div>
+            </div>
         </div>
-        <div
-            class="form-group"
-            [ngClass]="step < 3 ? 'hidden' : invalidInputs[4] ? 'invalid' : invalidInputs[4] === false ? 'valid' : ''">
+        <div class="form-group" [ngClass]="step < 3 ? 'hidden' : invalidInputs[4] ? 'ng-invalid mb-3' : invalidInputs[4] === false ? 'ng-valid' : ''">
             <input
                 [type]="showConfirmPassword ? 'text' : 'password'"
                 class="form-control"
                 id="confirmPassword"
                 name="confirmPassword"
+                formControlName="confirmPassword"
                 placeholder="Confirmar senha"
-                [(ngModel)]="confirmPassword"
-                (input)="validateBothPassword()"
+                (input)="validateStep(4)"
                 #confirmPasswordInput
                 required />
-            <button
-                type="button"
-                style="display: block"
-                (click)="showConfirmPassword = !showConfirmPassword"
-                [disabled]="!confirmPassword || confirmPassword.length === 0">
+            <button type="button" style="display: block" (click)="showConfirmPassword = !showConfirmPassword">
                 <fa-icon size="2x" [icon]="showConfirmPassword ? iconEyeClose : iconEye"></fa-icon>
             </button>
             <div class="invalid-feedback">Senhas não conferem.</div>
         </div>
         <div *ngIf="step >= 3" class="w-100 mt-2">
-            <button type="submit" style="float: right" class="button">
+            <button type="submit" style="float: right" class="button" [disabled]="form.invalid">
                 <span *ngIf="!isLoading">Cadastrar</span>
                 <fa-icon size="1x" class="ml-1" [icon]="isLoading ? iconSpinner : iconUserPlus"></fa-icon>
             </button>
