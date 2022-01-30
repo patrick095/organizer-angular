@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
         this.invalidInputs = [null, null, null, null, null];
         this.showPassword = false;
         this.showConfirmPassword = false;
-        this.form = this.signupForm.signupForm;
+        this.form = this.signupForm.form;
 
         if (this.route.getCurrentNavigation().extras.state) {
             this.signupForm.email = this.route.getCurrentNavigation().extras.state.email;

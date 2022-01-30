@@ -14,6 +14,10 @@ export default class SigninForm {
         });
     }
 
+    public get form(): FormGroup {
+        return this.signinForm;
+    }
+
     public get user(): string {
         return this.signinForm.get('user').value;
     }

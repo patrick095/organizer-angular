@@ -20,6 +20,10 @@ export default class SignupForm {
         );
     }
 
+    public get form(): FormGroup {
+        return this.signupForm;
+    }
+
     public get user(): string {
         return this.signupForm.get('user').value;
     }
