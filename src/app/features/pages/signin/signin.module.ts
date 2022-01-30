@@ -6,10 +6,11 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SigninComponent } from './signin.component';
 import SigninForm from './signin.form';
+import { SigninRoutingModule } from './signin.routing.module';
 
 @NgModule({
     declarations: [SigninComponent],
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, FontAwesomeModule],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FontAwesomeModule, SigninRoutingModule],
     exports: [SigninComponent],
     providers: [SigninForm],
 })

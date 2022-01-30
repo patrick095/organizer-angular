@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuardService } from '@core/services/auth-guard.service';
-import { DashComponent } from './features/pages/dash/dash.component';
-import { HomeComponent } from './features/pages/home/home.component';
-import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-found.component';
-import { SettingsComponent } from './features/pages/settings/settings.component';
-import { SigninComponent } from './features/pages/signin/signin.component';
-import { SignupComponent } from './features/pages/signup/signup.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'entrar', component: SigninComponent },
-    { path: 'cadastrar', component: SignupComponent },
-    { path: 'dash', component: DashComponent, canActivate: [AuthGuardService] },
-    { path: 'configuracoes', component: SettingsComponent },
-    { path: '**', component: PageNotFoundComponent },
+    { path: '', loadChildren: () => import('./features/pages/home/home.module').then((m) => m.HomeModule) },
+    { path: 'entrar', loadChildren: () => import('./features/pages/signin/signin.module').then((m) => m.SigninModule) },
+    { path: 'cadastrar', loadChildren: () => import('./features/pages/signup/signup.module').then((m) => m.SignupModule) },
+    { path: 'dash', loadChildren: () => import('./features/pages/dash/dash.module').then((m) => m.DashModule) },
+    { path: 'configuracoes', loadChildren: () => import('./features/pages/settings/settings.module').then((m) => m.SettingsModule) },
+    {
+        path: '**',
+        loadChildren: () => import('./features/pages/page-not-found/page-not-found.module').then((m) => m.PageNotFoundModule),
+    },
 ];
 
 @NgModule({
