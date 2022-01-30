@@ -3,6 +3,8 @@
     --bg-color: #ffffff;
     --font-color: #0e0e0e;
     --primary-item-color: #4266b9;
+    --primary-item-color-hover: #3c5f9e;
+    --primary-item-color-disabled: #627392;
     --primary-item-font-color: #ffffff;
     --secondary-bg-color: #1b1b1b;
     --secondary-font-color: #eeeeee;
@@ -27,5 +29,11 @@ body {
 @import 'animations/index';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

@@ -1,21 +1,21 @@
 <div class="sign-in">
     <div class="sign-in__card">
         <h2>Entrar</h2>
-        <form (submit)="signIn($event)">
-            <div [ngClass]="['form-group', isUserInvalid ? 'invalid' : '']">
+        <form [formGroup]="form" (ngSubmit)="signIn()">
+            <div [ngClass]="['form-group', isUserInvalid ? 'ng-invalid mb-3' : '']">
                 <input
                     type="text"
                     placeholder="Email ou usuário"
                     class="form-control"
-                    [(ngModel)]="user"
                     id="user"
                     name="user"
-                    [(ngModel)]="user"
+                    formControlName="user"
+                    #user
                     required />
                 <button
                     *ngIf="!isUserValid"
-                    (click)="validateUser()"
-                    [disabled]="user.length === 0"
+                    (click)="validateUser(user.value)"
+                    [disabled]="form.get('user').invalid"
                     [ngClass]="isLoading ? 'loading' : ''">
                     <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
                 </button>
@@ -27,14 +27,14 @@
                     class="form-control"
                     id="password"
                     name="password"
+                    formControlName="password"
                     placeholder="Senha"
-                    [(ngModel)]="password"
                     required
                     #passwordInput />
                 <button
                     *ngIf="isUserValid"
                     type="submit"
-                    [disabled]="user.length === 0"
+                    [disabled]="form.invalid"
                     [ngClass]="isLoading ? 'loading' : ''">
                     <fa-icon size="2x" [icon]="isLoading ? spinner : arrowRight"></fa-icon>
                 </button>

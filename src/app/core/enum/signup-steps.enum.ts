@@ -5,3 +5,11 @@ export enum StepsSignup {
     'passwordInput' = 3,
     'confirmPasswordInput' = 4,
 }
+
+export enum StepsSignupInputs {
+    'email' = 0,
+    'user' = 1,
+    'name' = 2,
+    'password' = 3,
+    'confirmPassword' = 4,
+}
