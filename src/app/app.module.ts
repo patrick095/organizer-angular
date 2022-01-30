@@ -15,13 +15,12 @@ import { DashModule } from '@features/pages/dash/dash.module';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NavbarModule } from '@core/components/navbar/navbar.module';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './features/pages/page-not-found/page-not-found.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    declarations: [AppComponent, PageNotFoundComponent],
+    declarations: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
