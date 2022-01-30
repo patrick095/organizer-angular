@@ -23,7 +23,7 @@ export class SigninComponent implements OnInit {
     public spinner: IconDefinition;
 
     constructor(private apiService: ApiService, private router: Router, private signForm: SigninForm) {
-        this.form = signForm.signinForm;
+        this.form = signForm.form;
         this.isLoading = false;
         this.isUserValid = false;
         this.isUserInvalid = false;

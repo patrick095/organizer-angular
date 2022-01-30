@@ -16,16 +16,16 @@ export class BaseService {
         return this.http.post<T>(`${url}`, body, this.options(customParams));
     }
 
-    public put(url: string, body: any, customParams?: CustomParams) {
-        return this.http.put(`${url}`, body, this.options(customParams));
+    public put<T>(url: string, body: any, customParams?: CustomParams) {
+        return this.http.put<T>(`${url}`, body, this.options(customParams));
     }
 
-    public delete(url: string, customParams?: CustomParams) {
-        return this.http.delete(`${url}`, this.options(customParams));
+    public delete<T>(url: string, customParams?: CustomParams) {
+        return this.http.delete<T>(`${url}`, this.options(customParams));
     }
 
-    public patch(url: string, body: any, customParams?: CustomParams) {
-        return this.http.patch(`${url}`, body, this.options(customParams));
+    public patch<T>(url: string, body: any, customParams?: CustomParams) {
+        return this.http.patch<T>(`${url}`, body, this.options(customParams));
     }
 
     private options(customParams?: CustomParams): CustomParams {
