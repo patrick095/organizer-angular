@@ -1,5 +1,12 @@
 name: CI Angular
-on: push
+on:
+    push:
+        branches:
+            - '**'
+
+    pull_request:
+        branches:
+            - master
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -20,4 +27,4 @@ jobs:
               uses: emibcn/clover-coverage-badges-action@v1
               with:
                   coverage-clover-path: coverage/stslib/clover.xml
-                  protected-branches: '["master",  "develop"]'
+                  protected-branches: '[]'
