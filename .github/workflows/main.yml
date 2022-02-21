@@ -15,4 +15,9 @@ jobs:
 
             - name: Test
               run: |
-                  npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+                  npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
+            - name: Generate badges
+              uses: emibcn/clover-coverage-badges-action@v1
+              with:
+                  coverage-clover-path: coverage/stslib/clover.xml
+                  protected-branches: '["master",  "develop"]'

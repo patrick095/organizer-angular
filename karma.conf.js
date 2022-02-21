@@ -29,7 +29,7 @@ module.exports = function (config) {
         coverageReporter: {
             dir: require('path').join(__dirname, './coverage/organizer-angular'),
             subdir: '.',
-            reporters: [{ type: 'html' }, { type: 'text-summary' }],
+            reporters: [{ type: 'json-summary' }],
         },
         reporters: ['progress', 'kjhtml'],
         port: 9876,
@@ -44,6 +44,11 @@ module.exports = function (config) {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox'],
             },
+        },
+        coverageIstanbulReporter: {
+            dir: require('path').join(__dirname, './coverage/organizer-angular'),
+            reports: ['json-summary'],
+            fixWebpackSourcePaths: true,
         },
     });
 };
