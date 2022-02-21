@@ -7,10 +7,13 @@
     "build": "npm run lint && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
+    "test:ci": "npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage && npm run make-badges:ci",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "build-prod": "ng build --configuration=production",
-    "start-prod": "ng serve --configuration=production"
+    "start-prod": "ng serve --configuration=production",
+    "make-badges": "istanbul-badges-readme",
+    "make-badges:ci": "npm run make-badges -- --ci"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +46,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-plugin-import": "^2.25.4",
+    "istanbul-badges-readme": "^1.8.1",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

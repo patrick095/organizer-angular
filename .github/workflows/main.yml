@@ -22,10 +22,4 @@ jobs:
 
             - name: Test
               run: |
-                  npm test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage
-            - name: Generate badges
-              uses: emibcn/clover-coverage-badges-action@v1
-              with:
-                  coverage-clover-path: coverage/organizer-angular/clover.xml
-                  protected-branches: '[]'
-                  coverage-summary-path: ./coverage/organizer-angular/coverage-summary.json
+                  npm test:ci
