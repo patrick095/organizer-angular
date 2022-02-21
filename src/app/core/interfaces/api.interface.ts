@@ -55,6 +55,11 @@ export interface ResponseData {
     objects: Array<UserDataObjectInterface>;
 }
 
+export interface UpdateObjectInterface {
+    userId: string;
+    object: UserDataObjectInterface;
+}
+
 export interface UserDataObjectInterface {
     date: Date;
     description: string;

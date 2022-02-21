@@ -1,4 +1,7 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApiConfig } from '@core/configs/api.config';
+import { ApiService } from '@features/services/api.service';
 
 import { DashComponent } from './dash.component';
 
@@ -9,8 +12,8 @@ describe('DashComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             declarations: [DashComponent],
-        })
-            .compileComponents();
+            providers: [ApiConfig, ApiService, HttpClient, HttpHandler],
+        }).compileComponents();
     });
 
     beforeEach(() => {

@@ -27,20 +27,28 @@ module.exports = function (config) {
             suppressAll: true, // removes the duplicated traces
         },
         coverageReporter: {
-            dir: require('path').join(__dirname, './coverage/organizer-angular'),
+            dir: require('path').join(__dirname, './coverage'),
             subdir: '.',
-            reporters: [
-                { type: 'html' },
-                { type: 'text-summary' },
-            ],
+            reporters: [{ type: 'json-summary' }],
         },
         reporters: ['progress', 'kjhtml'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
-        browsers: ['Chrome'],
         singleRun: false,
         restartOnFileChange: true,
+        browsers: ['Chrome', 'ChromeHeadless', 'ChromeHeadlessCI'],
+        customLaunchers: {
+            ChromeHeadlessCI: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox'],
+            },
+        },
+        coverageIstanbulReporter: {
+            dir: require('path').join(__dirname, '../../coverage'),
+            reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
+            fixWebpackSourcePaths: true,
+        },
     });
 };

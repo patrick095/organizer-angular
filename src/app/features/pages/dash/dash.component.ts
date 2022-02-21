@@ -30,6 +30,6 @@ export class DashComponent implements OnInit {
     public saveChanges(event: any, item: any) {
         const index = this.objects.findIndex((i) => i.id === item.id);
         this.objects[index] = { ...item, position: event };
-        this.api.updateItems(this.token, { userId: this.userId, objects: this.objects }).subscribe();
+        this.api.updateItems(this.token, { userId: this.userId, object: this.objects[index] }).subscribe();
     }
 }
