@@ -26,5 +26,6 @@ jobs:
             - name: Generate badges
               uses: emibcn/clover-coverage-badges-action@v1
               with:
-                  coverage-clover-path: coverage/stslib/clover.xml
+                  coverage-clover-path: coverage/organizer-angular/clover.xml
                   protected-branches: '[]'
+                  coverage-summary-path: ./coverage/organizer-angular/coverage-summary.json
