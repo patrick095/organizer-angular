@@ -10,7 +10,7 @@ import { ApiService } from '@features/services/api.service';
 import { DashComponent } from './dash.component';
 import { DashRoutingModule } from './dash.routing.module';
 
-describe('DashComponent', () => {
+fdescribe('DashComponent', () => {
     let component: DashComponent;
     let fixture: ComponentFixture<DashComponent>;
     let httpMock: HttpTestingController;
@@ -37,6 +37,12 @@ describe('DashComponent', () => {
         },
     ];
 
+    function getResponse() {
+        const req = httpMock.expectOne(`${config.baseUrl}/auth/get-objects`);
+        expect(req.request.method).toBe('POST');
+        req.flush({ userId: '1', objects: defaultObjects });
+    }
+
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [DockModule, DragDropModule, DragItemModule, DashRoutingModule, HttpClientTestingModule],
@@ -58,16 +64,12 @@ describe('DashComponent', () => {
     });
 
     it('should create', () => {
-        const req = httpMock.expectOne(`${config.baseUrl}/auth/get-objects`);
-        expect(req.request.method).toBe('POST');
-        req.flush({ userId: '1', objects: defaultObjects });
+        getResponse();
         expect(component).toBeTruthy();
     });
 
     it('Deve renderizar 2 drag-itens', () => {
-        const req = httpMock.expectOne(`${config.baseUrl}/auth/get-objects`);
-        expect(req.request.method).toBe('POST');
-        req.flush({ userId: '1', objects: defaultObjects });
+        getResponse();
         fixture.detectChanges();
         const dragItems = fixture.nativeElement.querySelectorAll('.drag-item');
         expect(dragItems.length).toBe(2);
@@ -88,9 +90,7 @@ describe('DashComponent', () => {
         component.userItems = defaultObjects;
         component.objects = defaultObjects;
         component.saveChanges({ x: 10, y: 10 }, defaultObjects[0]);
-        const req = httpMock.expectOne(`${config.baseUrl}/auth/get-objects`);
-        expect(req.request.method).toBe('POST');
-        req.flush({ userId: '1', objects: defaultObjects });
+        getResponse();
         fixture.detectChanges();
         const dragItem = fixture.nativeElement.querySelectorAll('.drag-item');
         expect(dragItem[0].style.transform).toBe('translate3d(10px, 10px, 0px)');
