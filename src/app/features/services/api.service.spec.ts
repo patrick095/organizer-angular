@@ -25,7 +25,7 @@ fdescribe('ApiServiceService', () => {
 
         const response = service.signUp({ user: 'teste', email: 'teste@test.com', password: 'teste', name: 'teste' });
         response.subscribe((res) => {
-            expect(res.user.user).toBe('teste');
+            expect(res.user.name).toBe('teste');
         });
         expect(spyPost).toHaveBeenCalledWith(
             `${config.baseUrl}/cadastrar`,
