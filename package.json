@@ -7,13 +7,12 @@
     "build": "npm run lint && ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "test:ci": "npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage && npm run make-badges:ci",
+    "test:ci": "npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI --code-coverage && npm run make-badges",
     "lint": "npx eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npx eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "build-prod": "ng build --configuration=production",
     "start-prod": "ng serve --configuration=production",
-    "make-badges": "istanbul-badges-readme",
-    "make-badges:ci": "npm run make-badges -- --ci"
+    "make-badges": "istanbul-badges-readme"
   },
   "private": true,
   "dependencies": {
