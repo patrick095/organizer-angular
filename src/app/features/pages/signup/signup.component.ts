@@ -79,7 +79,7 @@ export class SignupComponent implements OnInit {
     public validateUser(event: Event) {
         event.preventDefault();
         this.isLoading = true;
-        this.apiService.validadeUser(this.signupForm.user).subscribe((response) => {
+        this.apiService.validateUser(this.signupForm.user).subscribe((response) => {
             this.isLoading = false;
             if (!response.valid) {
                 this.invalidInputs[1] = false;

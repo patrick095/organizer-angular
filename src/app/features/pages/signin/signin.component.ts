@@ -72,7 +72,7 @@ export class SigninComponent implements OnInit {
             );
             return;
         }
-        this.apiService.validadeUser(user).subscribe(
+        this.apiService.validateUser(user).subscribe(
             (res) => {
                 this.isUserValid = res['valid'];
                 this.isUserInvalid = !res['valid'];

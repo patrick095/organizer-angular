@@ -23,11 +23,11 @@ export class ApiService extends BaseService {
         return this.post<ApiResponseUser>(`${this.baseUrl}/cadastrar`, userSignUp);
     }
 
-    public updateUser(user: { name: string; email: string; user: string; password: string }) {
+    public updateUser(user: { name: string; email: string; user: string; password: string; newPassword: string }) {
         return this.post<ApiResponseUser>(`${this.baseUrl}/atualizar`, user);
     }
 
-    public validadeUser(user: string) {
+    public validateUser(user: string) {
         return this.get<ResponseValidate>(`${this.baseUrl}/validar?user=${user}`);
     }
 

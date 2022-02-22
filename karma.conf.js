@@ -50,5 +50,8 @@ module.exports = function (config) {
             reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
             fixWebpackSourcePaths: true,
         },
+        browserConsoleLogOptions: {
+            level: 'log',
+        },
     });
 };
