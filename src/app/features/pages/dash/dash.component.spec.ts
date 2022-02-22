@@ -58,11 +58,21 @@ describe('DashComponent', () => {
         expect(dragItems.length).toBe(2);
     });
 
-    it('deve renderizar um item com position diferente do inicial', () => {
+    it('Deve renderizar um item com position diferente do inicial', () => {
         component.userItems = [{ ...defaultObjects[0], position: { x: 10, y: 10 } }];
         component.objects = [...component.userItems];
         fixture.detectChanges();
         const dragItem = fixture.nativeElement.querySelector('.drag-item');
         expect(dragItem.style.transform).toBe('translate3d(10px, 10px, 0px)');
+    });
+
+    it('Deve renderizar um item e movê-lo usando saveChanges', () => {
+        component.userItems = defaultObjects;
+        component.objects = defaultObjects;
+        component.saveChanges({ x: 10, y: 10 }, defaultObjects[0]);
+        fixture.detectChanges();
+        const dragItem = fixture.nativeElement.querySelectorAll('.drag-item');
+        expect(dragItem[0].style.transform).toBe('translate3d(10px, 10px, 0px)');
+        expect(dragItem[1].style.transform).toBe('translate3d(0px, 0px, 0px)');
     });
 });
