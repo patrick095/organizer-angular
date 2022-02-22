@@ -5,7 +5,7 @@ import { ApiConfig } from '@core/configs/api.config';
 
 import { ApiService } from './api.service';
 
-fdescribe('ApiServiceService', () => {
+describe('ApiServiceService', () => {
     let service: ApiService;
     let http: HttpClient;
     const config = new ApiConfig();

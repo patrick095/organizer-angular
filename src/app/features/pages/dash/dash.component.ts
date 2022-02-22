@@ -9,8 +9,8 @@ import { ApiService } from '@features/services/api.service';
 })
 export class DashComponent implements OnInit {
     public userItems: Array<DataObject>;
+    public objects: Array<DataObject>;
     private token: string;
-    private objects: Array<DataObject>;
     private userId: string;
 
     constructor(private api: ApiService) {
@@ -30,6 +30,6 @@ export class DashComponent implements OnInit {
     public saveChanges(event: any, item: any) {
         const index = this.objects.findIndex((i) => i.id === item.id);
         this.objects[index] = { ...item, position: event };
-        this.api.updateItems(this.token, { userId: this.userId, object: this.objects[index] }).subscribe();
+        this.api.updateItems(this.token, { userId: this.userId, object: this.objects[index] });
     }
 }
