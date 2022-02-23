@@ -10,7 +10,7 @@ import { ApiService } from '@features/services/api.service';
 import { DashComponent } from './dash.component';
 import { DashRoutingModule } from './dash.routing.module';
 
-fdescribe('DashComponent', () => {
+describe('DashComponent', () => {
     let component: DashComponent;
     let fixture: ComponentFixture<DashComponent>;
     let httpMock: HttpTestingController;
