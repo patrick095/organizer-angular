@@ -9,7 +9,7 @@ on:
             - master
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: patrick095/node-16-chrome@latest
         steps:
             - uses: actions/checkout@v2
             - name: Use Node.js 16.x
