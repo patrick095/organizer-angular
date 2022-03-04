@@ -1,6 +1,6 @@
 # OrganizerAngular
 
-[![CI Angular](https://github.com/patrick095/organizer-angular/actions/workflows/main.yml/badge.svg)](https://github.com/patrick095/organizer-angular/actions/workflows/main.yml)
+[![unit-tests](https://github.com/patrick095/organizer-angular/actions/workflows/unit-tests.yml/badge.svg)](https://github.com/patrick095/organizer-angular/actions/workflows/unit-tests.yml)
 [![Lint](https://github.com/patrick095/organizer-angular/actions/workflows/lint.yml/badge.svg)](https://github.com/patrick095/organizer-angular/actions/workflows/lint.yml)
 
 ## Cobertura dos testes
